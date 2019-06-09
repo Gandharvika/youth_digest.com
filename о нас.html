@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<style>
+
+ .button {
+  position: relative;
+  display: inline-block;
+  color: #777674;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 7px 3px;
+  user-select: none;
+  padding: 1em 2em;
+  outline: none;
+  border-radius: 3px / 100%;
+  background-image:
+   linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%),
+   linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
+  background-repeat: no-repeat;
+  background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+  background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+  box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+}
+.button:hover {
+  transition: .5s linear;
+  background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+}
+.button:active {
+  top: 1px;
+}
+
+        /* свойства модального окна по умолчанию */
+        .modal {
+            position: fixed; /* фиксированное положение */
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); /* цвет фона */
+            z-index: 1050;
+            opacity: 0; /* по умолчанию модальное окно прозрачно */
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
+            transition: opacity 400ms ease-in; /* анимация перехода */
+            pointer-events: none; /* элемент невидим для событий мыши */
+        }
+
+        /* при отображении модального окно */
+        .modal:target {
+            opacity: 1;
+            pointer-events: auto;
+            overflow-y: auto;
+        }
+
+        /* ширина модального окна и его отступы от экрана */
+        .modal-dialog {
+            position: relative;
+            width: auto;
+            margin: 10px;
+        }
+
+        @media (min-width: 576px) {
+            .modal-dialog {
+                max-width: 500px;
+                margin: 30px auto;
+            }
+        }
+
+        /* свойства для блока, содержащего контент модального окна */
+        .modal-content {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            background-color: #fff;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-radius: .3rem;
+            outline: 0;
+        }
+
+        @media (min-width: 768px) {
+            .modal-content {
+                -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+            }
+        }
+
+        /* свойства для заголовка модального окна */
+        .modal-header {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #eceeef;
+        }
+
+        .modal-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            line-height: 1.5;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        /* свойства для кнопки "Закрыть" */
+        .close {
+            float: right;
+            font-family: sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            opacity: .5;
+            text-decoration: none;
+        }
+
+        /* свойства для кнопки "Закрыть" при нахождении её в фокусе или наведении */
+        .close:focus, .close:hover {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+            opacity: .75;
+        }
+
+        /* свойства для блока, содержащего основное содержимое окна */
+        .modal-body {
+            position: relative;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: 15px;
+            overflow: auto;
+        }
+
+body {
+    background: url(фон.jpg) no-repeat;
+    background-size: 100%; 
+    color: black; 
+   }
+   
+
+@media screen and (max-width: 600px) {
+	.topnav input[type=text] {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  border: none;
+  font-size: 17px;
+}
+
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
+
+</style>
+</head>
+
+<body>
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+        <ul class="nav navbar-nav">
+      <li><a href="о нас.html">о нас</a></li>
+      <li><a href="список-ссылка.html">статьи</a></li>
+      <li><a href="фоторепортажи.html">фоторепортажи</a></li>
+      <li><a href="связаться с нами.html">связаться с нами</a></li>
+       </ul>
+
+       <form class="navbar-form navbar-left" action="/action_page.php">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+		  
+  </div>
+</nav>
+  
+<style type="text/css">
+  .styletest {
+  color: blue; 
+  font-size: 66px; 
+  font-family:Impact;
+  }
+</style>
+
+<p class="serif"><font size="6" color="black" face="Arial">Меня зовут Екатерина, я учасница кружка "юный журналист". На этом сайте публикуются мои статьи и первые пробы учеников кружка. А почему я решила заниматься журналистикой Вы можете прочитать ниже.</font></p>
+<br>
+<br>
+<br>
+<div class="image">
+              <article><img src="2.jpg"  width="300" height="200" class="leftimg"></article>
+</div>
+
+<h2> Чем меня привлекает журналистика?</h2>
+
+<p class="serif"><font size="5" color="black" face="Arial"> Несколько лет назад я начала задумываться, какую выбрать профессию и чем мне заниматься в будущем. Через некоторое время я узнала, что в моей школе открылся кружок "юного журналиста". Не долго думая, я посетила занятие. От урока к уроку профессия журналиста мне нравилась все больше и больше. «Чем?» - спросите вы. Интересно знакомиться с новой терминологией, с творческими людьми, брать интервью, познавать работу других с разных ракурсов и посещать культурные мероприятия. А самое главное, чем меня привлекает профессия журналиста, это то, что нужно постоянно развиваться и самосовершенствоваться. Я стала больше читать, наблюдать, анализировать, смотреть на все глазами журналиста. Подружилась с фото- и видеотехникой. Уверена, что впереди еще много неизведанного в этой сфере.</font></p>
+	
+<p><font size="5" color="black" face="Arial">Я считаю, что эта специальность одна из тех, что требует постоянного прогресса как в технологиях, так и в наших знаниях. А еще она открывает множество возможностей для новых открытий, знакомств и путешествий, как маленьких, так и больших.
+Мне очень нравится профессия журналиста своим разнообразием и постоянным развитием.</font></p>
+
+<a href="список-ссылка.html" class="c"> <button class="button"> статьи </button></a>
+
+<a href="связаться с нами.html" class="c"><button class="button">связаться с нами</button></a>
+
+<a href="фоторепортажи.html" class="c"> <button class="button">фоторепортажи </button></a>
+
+</body>
+</html>

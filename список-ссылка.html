@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <style>
+    
+
+ .button {
+  position: relative;
+  display: inline-block;
+  color: #777674;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 7px 3px;
+  user-select: none;
+  padding: 1em 2em;
+  outline: none;
+  border-radius: 3px / 100%;
+  background-image:
+   linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%),
+   linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
+  background-repeat: no-repeat;
+  background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+  background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+  box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+}
+.button:hover {
+  transition: .5s linear;
+  background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+}
+.button:active {
+  top: 1px;
+}
+
+body {
+    background: white url(фон.jpg);
+    background-size: 100%; 
+    color: black; 
+   }
+ 
+
+div.gallery {
+  margin: 10px;
+  border: 1px solid black;
+  float: left;
+  width: 200px;
+}
+
+div.gallery:hover {
+  border: 1px solid black;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 30px;
+  text-align: center;
+}
+  </style>
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+        <ul class="nav navbar-nav">
+      <li class="active"><a href="о нас.html">о нас</a></li>
+      <li><a href="список-ссылка.html">статьи</a></li>
+      <li><a href="фоторепортажи.html">фоторепортажи</a></li>
+      <li><a href="связаться с нами.html">связаться с нами</a></li>
+      </ul>
+       <form class="navbar-form navbar-left" action="/action_page.php">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</nav>
+  
+<style type="text/css">
+  .styletest {
+  color: blue; 
+  font-size: 66px; 
+  font-family:Impact;
+  }
+</style>
+
+
+<div class="gallery">
+ <P><a href="мехенди.html"><img src="м3КАРУСЕЛЬ.jpg" style="width:100%"></a></P>
+  <div class="desc">Это не больно. Это не вредно. И даже полезно...</div>
+</div>
+
+<div class="gallery">
+  <P><a href="йога.html"><img src="йога карусель.jpg" style="width:100%"></a></P>
+  <div class="desc"> Oсознанному мироощущению учат с помощью йоги</div>
+</div>
+
+<div class="gallery">
+   <P><a href="астрология.html"><img src="а3-1.jpg" style="width:100%"></a></P>
+  <div class="desc">Тайна и загадка ведической астрологии...</div>
+</div>
+
+<div class="gallery">
+ <P><a href="Ужну.html"><img src="у3-1.jpg" style="width:100%"></a></P>
+  <div class="desc">Будущие акулы пера на факультете журналистики</div>
+</div>
+
+<div class="gallery">
+ <P><a href="шедевр.html"><img src="у3-1.jpg" style="width:100%"></a></P>
+  <div class="desc">               </div>
+</div>
+
+<a href="связаться с нами.html" class="c"><button class="button">связаться с нами</button></a>
+
+<a href="фоторепортажи.html" class="c"> <button class="button">фоторепортажи </button></a>
+
+</body>
+</html>
